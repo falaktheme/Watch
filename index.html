@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Watch</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="analog-clock.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="watch-container">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="clock">Clock</button>
+                <button class="mode-btn" data-mode="stopwatch">Stopwatch</button>
+                <button class="mode-btn" data-mode="timer">Timer</button>
+            </div>
+            
+            <div class="watch-face">
+                <!-- Clock Mode -->
+                <div class="watch-mode active" id="clock-mode">
+                    <div class="date-display" id="date">Monday, January 1, 2023</div>
+                    <div class="time-display">
+                        <span id="hours">12</span>:
+                        <span id="minutes">00</span>:
+                        <span id="seconds">00</span>
+                        <span id="ampm">PM</span>
+                    </div>
+                    
+                    <!-- Analog Clock -->
+                    <div class="analog-clock">
+                        <div class="clock-face">
+                            <div class="markers">
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                                <div class="hour-marker"></div>
+                            </div>
+                            <div class="hour-hand hand"></div>
+                            <div class="minute-hand hand"></div>
+                            <div class="second-hand hand"></div>
+                            <div class="clock-center"></div>
+                        </div>
+                    </div>
+                    <div class="format-toggle">
+                        <button id="format-btn">Switch to 24-hour format</button>
+                    </div>
+                </div>
+                
+                <!-- Stopwatch Mode -->
+                <div class="watch-mode" id="stopwatch-mode">
+                    <div class="stopwatch-display">
+                        <span id="stopwatch-minutes">00</span>:
+                        <span id="stopwatch-seconds">00</span>:
+                        <span id="stopwatch-ms">00</span>
+                    </div>
+                    <div class="stopwatch-controls">
+                        <button id="stopwatch-start">Start</button>
+                        <button id="stopwatch-reset">Reset</button>
+                    </div>
+                    <div class="lap-times" id="lap-times">
+                        <h3>Lap Times</h3>
+                        <ul id="lap-list"></ul>
+                    </div>
+                </div>
+                
+                <!-- Timer Mode -->
+                <div class="watch-mode" id="timer-mode">
+                    <div class="timer-setup" id="timer-setup">
+                        <div class="timer-inputs">
+                            <input type="number" id="timer-minutes" min="0" max="59" value="0">
+                            <span>:</span>
+                            <input type="number" id="timer-seconds" min="0" max="59" value="0">
+                        </div>
+                        <button id="timer-set">Set Timer</button>
+                    </div>
+                    <div class="timer-display" id="timer-display">
+                        <span id="timer-minutes-display">00</span>:
+                        <span id="timer-seconds-display">00</span>
+                    </div>
+                    <div class="timer-controls">
+                        <button id="timer-start">Start</button>
+                        <button id="timer-reset">Reset</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="theme-selector">
+                <button class="theme-btn active" data-theme="default">Default</button>
+                <button class="theme-btn" data-theme="dark">Dark</button>
+                <button class="theme-btn" data-theme="light">Light</button>
+                <button class="theme-btn" data-theme="neon">Neon</button>
+            </div>
+            
+            <div class="display-toggle">
+                <button id="display-toggle-btn">Switch to Analog</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

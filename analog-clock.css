@@ -1,0 +1,160 @@
+/* Analog Clock Styles */
+.analog-clock {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: rgba(15, 52, 96, 0.8);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.analog-clock.active {
+    display: block;
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* Clock center point */
+.clock-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #e94560;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* Clock hands */
+.hand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: left center;
+    z-index: 5;
+}
+
+.hour-hand {
+    width: 60px;
+    height: 6px;
+    background-color: #fff;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+.minute-hand {
+    width: 80px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 2px;
+    transform: translateY(-50%);
+}
+
+.second-hand {
+    width: 90px;
+    height: 2px;
+    background-color: #e94560;
+    border-radius: 1px;
+    transform: translateY(-50%);
+}
+
+/* Clock markers */
+.markers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.hour-marker {
+    position: absolute;
+    width: 6px;
+    height: 15px;
+    background-color: #fff;
+    top: 5px;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%);
+    border-radius: 3px;
+}
+
+/* Position the hour markers */
+for (let i = 1; i <= 12; i++) {
+    .hour-marker:nth-child(${i}) {
+        transform: translateX(-50%) rotate(${i * 30}deg);
+    }
+}
+
+/* Theme variations */
+body.theme-dark .analog-clock {
+    background-color: #2d3436;
+}
+
+body.theme-light .analog-clock {
+    background-color: #dfe6e9;
+}
+
+body.theme-light .hour-hand,
+body.theme-light .minute-hand,
+body.theme-light .hour-marker {
+    background-color: #2d3436;
+}
+
+body.theme-neon .analog-clock {
+    background-color: #6c5ce7;
+}
+
+body.theme-neon .second-hand,
+body.theme-neon .clock-center {
+    background-color: #00cec9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .analog-clock {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .hour-hand {
+        width: 50px;
+    }
+    
+    .minute-hand {
+        width: 70px;
+    }
+    
+    .second-hand {
+        width: 80px;
+    }
+}
+
+@media (max-width: 300px) {
+    .analog-clock {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hour-hand {
+        width: 40px;
+    }
+    
+    .minute-hand {
+        width: 60px;
+    }
+    
+    .second-hand {
+        width: 70px;
+    }
+}

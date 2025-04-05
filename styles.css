@@ -1,0 +1,435 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    transition: background 0.5s ease;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.watch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Watch face styling */
+.watch-face {
+    background-color: #0f3460;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: 10px solid #16213e;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background-color: #0f3460;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: 10px solid #16213e;
+    transition: transform 0.3s ease;
+}
+
+.watch-face:hover {
+    transform: scale(1.02);
+}
+
+/* Date display styling */
+.date-display {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #e94560;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Time display styling */
+.time-display {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
+}
+
+#seconds {
+    color: #e94560;
+    position: relative;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    from { opacity: 0.7; text-shadow: 0 0 5px rgba(233, 69, 96, 0.5); }
+    to { opacity: 1; text-shadow: 0 0 15px rgba(233, 69, 96, 0.9); }
+}
+
+/* Add ticking effect for seconds */
+#seconds::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 6px;
+    height: 6px;
+    background-color: #e94560;
+    border-radius: 50%;
+    animation: tick 1s steps(1) infinite;
+}
+
+@keyframes tick {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Format toggle button styling */
+.format-toggle {
+    margin-top: 20px;
+}
+
+#format-btn {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#format-btn:hover {
+    background-color: #ff6b81;
+    transform: scale(1.05);
+}
+
+/* Mode selector styling */
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.mode-btn {
+    background-color: #16213e;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.mode-btn:hover {
+    background-color: #1f3a63;
+    transform: scale(1.05);
+}
+
+.mode-btn.active {
+    background-color: #e94560;
+}
+
+/* Theme selector styling */
+.theme-selector {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.theme-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+}
+
+.theme-btn.active {
+    border-color: #fff;
+}
+
+.theme-btn[data-theme="default"] {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.theme-btn[data-theme="dark"] {
+    background: linear-gradient(135deg, #000000, #2d3436);
+}
+
+.theme-btn[data-theme="light"] {
+    background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+}
+
+.theme-btn[data-theme="neon"] {
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+}
+
+/* Watch mode styling */
+.watch-mode {
+    display: none;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    padding: 20px;
+}
+
+.watch-mode.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* Display toggle button */
+.display-toggle {
+    margin-top: 15px;
+}
+
+#display-toggle-btn {
+    background-color: #16213e;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#display-toggle-btn:hover {
+    background-color: #1f3a63;
+    transform: scale(1.05);
+}
+
+/* Stopwatch styling */
+.stopwatch-display {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
+}
+
+.stopwatch-controls, .timer-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.stopwatch-controls button, .timer-controls button {
+    background-color: #e94560;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.stopwatch-controls button:hover, .timer-controls button:hover {
+    background-color: #ff6b81;
+    transform: scale(1.05);
+}
+
+.stopwatch-controls button.active {
+    background-color: #ff6b81;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
+}
+
+.lap-times {
+    margin-top: 15px;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 80%;
+    text-align: center;
+    border-radius: 10px;
+    background-color: rgba(15, 52, 96, 0.3);
+    padding: 10px;
+}
+
+.lap-times h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #e94560;
+}
+
+#lap-list {
+    list-style: none;
+    padding: 0;
+}
+
+#lap-list li {
+    font-size: 12px;
+    margin: 5px 0;
+    color: #ddd;
+}
+
+/* Timer styling */
+.timer-setup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.timer-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.timer-inputs input {
+    width: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    padding: 5px;
+    text-align: center;
+}
+
+.timer-display {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(233, 69, 96, 0.7);
+}
+
+/* Theme styles */
+body.theme-dark {
+    background: linear-gradient(135deg, #000000, #2d3436);
+}
+
+body.theme-light {
+    background: linear-gradient(135deg, #dfe6e9, #b2bec3);
+    color: #2d3436;
+}
+
+body.theme-light .watch-face {
+    background-color: #dfe6e9;
+    border-color: #b2bec3;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+body.theme-light .time-display {
+    color: #2d3436;
+    text-shadow: 0 0 10px rgba(178, 190, 195, 0.7);
+}
+
+body.theme-light .date-display {
+    color: #e94560;
+}
+
+body.theme-neon {
+    background: linear-gradient(135deg, #6c5ce7, #00cec9);
+}
+
+body.theme-neon .watch-face {
+    background-color: #6c5ce7;
+    border-color: #00cec9;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 206, 201, 0.3);
+}
+
+body.theme-neon .time-display {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.9);
+}
+
+body.theme-neon #seconds {
+    color: #00cec9;
+}
+
+body.theme-neon .date-display {
+    color: #00cec9;
+}
+
+/* Responsive design */
+@media (max-width: 400px) {
+    .watch-face {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .time-display {
+        font-size: 32px;
+    }
+    
+    .date-display {
+        font-size: 12px;
+    }
+    
+    #format-btn {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 300px) {
+    .watch-face {
+        width: 200px;
+        height: 200px;
+        border-width: 8px;
+    }
+    
+    .time-display {
+        font-size: 28px;
+    }
+}
